@@ -1,4 +1,3 @@
-```javascript
 (function(window, undefined) {
 
 	var PENDING = undefined,
@@ -180,4 +179,3 @@
 	window.Promise = Promise;
 
 })(window);
-```
