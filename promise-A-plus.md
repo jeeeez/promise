@@ -57,15 +57,3 @@
 
 ![](./images/o1.png)
 
-[Promise/A+ 规范](http://malcolmyu.github.io/malnote/2015/06/12/Promises-A-Plus/)
-
-
-深入实现
-http://www.shaynegui.com/promise-aplus-implementation/
-
-
-
-http://www.tuicool.com/articles/RzQRV3
-
-
-https://github.com/ygm125/promise/blob/master/promise.js
