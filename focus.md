@@ -40,3 +40,18 @@ var Promise = function(resolver){
 3. promise/A+ 规范规定所有的then的2个参数的回调都应该是异步的,必须在 then 方法返回之后异步执行,对于我们实现来说就是必须把回调加入到下一个函数队列循环中。
 
 4. 关于规范中 `promise2 = promise1.then(onFulfilled, onRejected);` 仔细看规范知道,这里可能会有3个 promise，即 promise1，onFulfilled返回的 thenpromise，promise2，promise2 必须在 thenpromise 兑现之后才能 reslove。
+
+
+
+
+```javascript
+var promise = new Promise(function(resolve, reject){
+        setTimeout(function(){
+            resolve('success');
+            },2000);
+    }).then(function success(v){
+            return v;
+        },function fail(err){
+            return err;
+            });
+```

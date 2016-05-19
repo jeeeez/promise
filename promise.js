@@ -65,6 +65,7 @@
 			function callback(value) {
 				var ret = isFunction(onFulfilled) && onFulfilled(value) || value;
 				if (isThenable(ret)) {
+					// 根据返回的promise执行的结果，触发下一个promise相应的状态
 					ret.then(function(value) {
 						resolve(value);
 					}, function(reason) {
