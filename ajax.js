@@ -1,17 +1,29 @@
-var ajax = function(url) {
-	return new Promise(function(resolve, reject) {
-		var xhq = new XMLHttpRequest();
-		xhq.open('get', url);
-		xhq.onload = function(data) {
-			if (xhq.readyState === 4) {
-				if (xhq.status === 200) {
-					resolve(JSON.parse(xhq.responseText));
-				}
+var getJSON = function(url) {
+	var promise = new Promise(function(resolve, reject) {
+		var client = new XMLHttpRequest();
+		client.open("GET", url);
+		client.onreadystatechange = handler;
+		client.responseType = "json";
+		client.setRequestHeader("Accept", "application/json");
+		client.send();
+
+		function handler() {
+			if (this.readyState !== 4) {
+				return;
 			}
-		}
-		xhq.onerror = function(e) {
-			reject(e);
-		}
-		xhq.send(null);
+			if (this.status === 200) {
+				resolve(this.response);
+			} else {
+				reject(new Error(this.statusText));
+			}
+		};
 	});
-}
+
+	return promise;
+};
+
+getJSON("/posts.json").then(function(json) {
+	console.log('Contents: ' + json);
+}, function(error) {
+	console.error('出错了', error);
+});
